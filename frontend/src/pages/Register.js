@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { FaUser } from "react-icons/fa";
+import {useNavigate} from 'react-router-dom'
+import {toast} from 'react-toastify'
+import {useSelector,useDispatch} from 'react-redux'
+import {register,reset} from '../features/auth/authSlice'
+import Spinner from "../Components/Spinner";
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -12,6 +17,21 @@ function Register() {
 
   const { name, email, password, password2, phonenumber } = formData;
 
+  const navigate=useNavigate()
+  const dispatch = useDispatch()
+  const {user,isLoading,isError,isSuccess,message}=useSelector(
+    (state)=>state.auth)
+
+    useEffect(()=>{
+if(isError){
+  toast.error(message)
+}
+if(isSuccess|| user){
+navigate('/')
+}
+dispatch(reset())
+    },[user,isError,isSuccess,message,navigate,dispatch])
+
   const onChange = (e) =>{
     setFormData((prevState)=>({
      ...prevState,
@@ -20,7 +40,25 @@ function Register() {
   };
   const onSubmit=(e)=>{
     e.preventDefault()
+    if(password!== password2){
+      toast.error('password do not match')
+    }
+      console.log(name);
+      const userData={
+        name,
+        email,
+        password
+      }
+      dispatch(register(userData))
+    
   }
+  if(isLoading){
+    return(
+      <Spinner/>
+    )
+  }
+
+
   return (
     <>
       <section className="heading">
@@ -79,8 +117,8 @@ function Register() {
             <input
               type="number"
               className="form-control"
-              id="number"
-              name="number"
+              id="phonenumber"
+              name="phonenumber"
               value={phonenumber}
               placeholder="Enter Your Phone Number"
               onChange={onChange}
