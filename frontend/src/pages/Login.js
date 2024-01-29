@@ -30,14 +30,12 @@ function Login() {
           },[user,isError,isSuccess,message,navigate,dispatch])
 
   const onChange = (e) =>{
-    console.log("called");
     setFormData((prevState)=>({
      ...prevState,
      [e.target.name]:e.target.value
     }))
   };
   const onSubmit=(e)=>{
-    console.log("called");
     e.preventDefault()
     const userData={
       email,

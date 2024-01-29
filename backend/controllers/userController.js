@@ -6,9 +6,9 @@ const User = require('../model/userModel')
 // POST /api/users
 //Public
 const registerUser =asyncHandler(async(req,res)=>{
-   const{name,email,password,phonenumber}=req.body
+   const{name,email,password}=req.body
 
-   if(!name || !email || !password){
+   if(!name || !email || !password ){
     res.status(400)
     throw new Error('please add all fields')
    }
@@ -27,7 +27,6 @@ const registerUser =asyncHandler(async(req,res)=>{
     name,
     email,
     password:hashedPassword,
-    phonenumber
    })
 
    if(user){
@@ -51,6 +50,7 @@ const loginUser =asyncHandler(async(req,res)=>{
    const {email,password}=req.body
    //check for user email
    const user= await User.findOne({email})
+   
    if(user&&(await bcrypt.compare(password,user.password))){
     res.json({
         _id:user.id,

@@ -17,10 +17,6 @@ const userSchema = mongoose.Schema({
         required:[true,"please add password"],
         unique:true
     },
-    phonenumber:{
-        type:Number,
-        unique:true
-    },
 },{
     timestamps:true
 })

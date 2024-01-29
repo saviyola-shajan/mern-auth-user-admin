@@ -12,10 +12,9 @@ function Register() {
     email: "",
     password: "",
     password2: "",
-    phonenumber: "",
   });
 
-  const { name, email, password, password2, phonenumber } = formData;
+  const { name, email, password, password2 } = formData;
 
   const navigate=useNavigate()
   const dispatch = useDispatch()
@@ -42,15 +41,14 @@ dispatch(reset())
     e.preventDefault()
     if(password!== password2){
       toast.error('password do not match')
-    }
-      console.log(name);
+    }else{
       const userData={
         name,
         email,
         password
       }
       dispatch(register(userData))
-    
+    }
   }
   if(isLoading){
     return(
@@ -110,17 +108,6 @@ dispatch(reset())
               name="password2"
               value={password2}
               placeholder="Confirm password"
-              onChange={onChange}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="number"
-              className="form-control"
-              id="phonenumber"
-              name="phonenumber"
-              value={phonenumber}
-              placeholder="Enter Your Phone Number"
               onChange={onChange}
             />
           </div>
