@@ -34,6 +34,7 @@ const registerUser =asyncHandler(async(req,res)=>{
       _id:user.id,
       name:user.name,
       email:user.email,
+      profileUrl:user.profileUrl,
       token:generateToken(user._id)        
     })
    }else{

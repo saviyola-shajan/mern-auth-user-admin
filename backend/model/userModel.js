@@ -17,6 +17,13 @@ const userSchema = mongoose.Schema({
         required:[true,"please add password"],
         unique:true
     },
+    isBlock:{
+        type:Boolean,
+        default:false
+    },
+    profileUrl:{
+        type:String
+    }
 },{
     timestamps:true
 })
