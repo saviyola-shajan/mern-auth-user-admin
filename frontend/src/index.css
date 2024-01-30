@@ -169,6 +169,12 @@ h3 {
   transform: scale(0.98);
 }
 
+.logoutadmin {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 10px;
+}
+
 .loadingSpinnerContainer {
   position: fixed;
   top: 0;

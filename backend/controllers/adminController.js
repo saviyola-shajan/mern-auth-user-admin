@@ -100,6 +100,9 @@ const editUser=asyncHandler(async(req,res)=>{
     }
 })
 
+
+//logout
+
   //Generate JWT token
   const generateToken=(id)=>{
     return jwt.sign({id},process.env.JWT_SECRET,{
