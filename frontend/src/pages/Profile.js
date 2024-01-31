@@ -35,14 +35,15 @@ function Profile() {
       <h3>Upload profile picture</h3>
       <img
         src={user?.profileUrl ? user.profileUrl : ""}
-        alt=""
+        alt="profile"
+        height="250px" width="400px"
       />
       <h4>{user.name}</h4>
       <h4>{user.email}</h4>
       <form>
-        <div className="form-group">
-          <img src={url ? url : ""} alt="profile" height="250px" width="400px"/> <br />
-        </div>
+        {/* <div className="form-group">
+          <img src={url ? url : ""} alt="" height="250px" width="400px"/> <br />
+        </div> */}
         <div className="form-group">
           <input
             type="file"

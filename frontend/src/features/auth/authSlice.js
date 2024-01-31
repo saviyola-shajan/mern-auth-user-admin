@@ -112,6 +112,23 @@ export const authSlice = createSlice({
         state.message=action.payload
         state.user=null
     })
+    .addCase(profileUpdate.pending, (state) => {
+      state.isLoading = true
+  })
+  .addCase(profileUpdate.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;                
+      state.user = {
+          ...state.user,
+          profileUrl: action.payload.profileUrl,
+      };
+  })
+  
+  .addCase(profileUpdate.rejected, (state, action) => {
+      state.isLoading = false
+      state.isError = true
+      state.message = action.payload
+  })
   },
 });
 export const { reset } = authSlice.actions;

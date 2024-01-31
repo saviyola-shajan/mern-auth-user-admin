@@ -51,12 +51,18 @@ const loginUser =asyncHandler(async(req,res)=>{
    const {email,password}=req.body
    //check for user email
    const user= await User.findOne({email})
+
+   if(user.isBlocked){
+    res.status(400)
+    throw new Error('Your account is currently blocked!');
+}
    
    if(user&&(await bcrypt.compare(password,user.password))){
     res.json({
         _id:user.id,
         name:user.name,
         email:user.email,
+        profileUrl:user.profileUrl,
         token:generateToken(user._id)  
     })
    }else{

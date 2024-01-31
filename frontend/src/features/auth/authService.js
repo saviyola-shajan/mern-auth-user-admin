@@ -27,7 +27,8 @@ const profileUpload=async(token,url)=>{
             Authorization:`Bearer ${token}`
         }
     }
-    const response=await axios.post(API_URL+'profile/upload',{url},config)
+    const liveUser= JSON.parse(localStorage.getItem('user'))
+    const response=await axios.post(API_URL+'profile/upload',{url,liveUser},config)
     return response.data
 }
 
