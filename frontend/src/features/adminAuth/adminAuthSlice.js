@@ -18,10 +18,8 @@ export const adminLogin = createAsyncThunk(
   "auth/adminLogin",
   async (admin, thunkAPI) => {
     try {
-      console.log("vannu");
       return await adminAuthService.adminLogin(admin);
     } catch (error) {
-      console.log("vannilla");
       const message =
         (error.response &&
           error.response.data &&
@@ -34,7 +32,7 @@ export const adminLogin = createAsyncThunk(
 );
 
 //logout admin
-export const adminLogout = createAsyncThunk("auth/adminLogut", async () => {
+export const adminLogout = createAsyncThunk("adminAuth/adminLogout", async () => {
   await adminAuthService.adminLogout();
 });
 
@@ -163,7 +161,9 @@ export const adminAuthSlice = createSlice({
       .addCase(adminLogout.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(adminLogout.fulfilled)
+      .addCase(adminLogout.fulfilled,(state)=>{
+        state.admin=null
+      })
       .addCase(adminLogout.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;

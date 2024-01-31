@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import {
   getAllUsers,
   editUser,
@@ -10,7 +10,7 @@ import {
   adminLogout,
 } from "../features/adminAuth/adminAuthSlice";
 
-const  UserList=()=> {
+const UserList = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const users = useSelector((state) => state.adminAuth.users);
@@ -24,39 +24,40 @@ const  UserList=()=> {
     };
   }, [dispatch]);
 
-  const handleEdit=(userId,name,email)=>{
-     const newName=prompt('Enter new name:',name)
-     const newEmail=prompt('Enter new Email:',email)
-     if (newName === null || newEmail === null) {
+  const handleEdit = (userId, name, email) => {
+    const newName = prompt("Enter new name:", name);
+    const newEmail = prompt("Enter new Email:", email);
+    if (newName === null || newEmail === null) {
       return; // Cancel operation
     }
-     if(newEmail&& newName){
-      dispatch(editUser({userId,name:newName,email:newEmail}))
-     }
-  }
-
-  const handleBlock=(userId)=>{
-    if(window.confirm('Are you sure want to block the user?')){
-      dispatch(UserBlock(userId))
+    if (newEmail && newName) {
+      dispatch(editUser({ userId, name: newName, email: newEmail }));
     }
-  }
+  };
 
-  const handleUnBlock=(userId)=>{
-    if(window.confirm('Are you sure want to Unblock the user?')){
-      dispatch(UserUnBlock(userId))
+  const handleBlock = (userId) => {
+    if (window.confirm("Are you sure want to block the user?")) {
+      dispatch(UserBlock(userId));
     }
-  }
+  };
+
+  const handleUnBlock = (userId) => {
+    if (window.confirm("Are you sure want to Unblock the user?")) {
+      dispatch(UserUnBlock(userId));
+    }
+  };
 
   const logout = () => {
-    dispatch(adminLogout());
-    navigate("/login");
+    dispatch(adminLogout())
+    console.log("dhghsj")
+    navigate('login');
   };
   return (
     <div>
-<div className="logoutadmin">
-      <button className="btn" onClick={logout}>
-        Logout
-      </button>
+      <div className="logoutadmin">
+        <button className="btn" onClick={logout}>
+          Logout
+        </button>
       </div>
       <h2>Users List</h2>
       {isLoading && <p>Loading...</p>}
@@ -95,6 +96,6 @@ const  UserList=()=> {
       )}
     </div>
   );
-}
+};
 
 export default UserList;

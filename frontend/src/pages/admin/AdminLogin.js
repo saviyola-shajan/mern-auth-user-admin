@@ -24,7 +24,6 @@ function AdminLogin() {
   useEffect(() => {
     if (isError) {
       toast.error(message);
-      console.log("error");
     }
     if (isSucces || admin) {
       navigate("/admin");

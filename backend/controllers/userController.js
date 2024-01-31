@@ -73,6 +73,17 @@ const getMe =asyncHandler(async(req,res)=>{
     res.status(200).json(req.user)  
   })
 
+  // upload user profile
+  //post/api/users/profile
+  //private
+  const profileUpload=asyncHandler(async(req,res)=>{
+    const url=req.body.url
+    await User.findByIdAndUpdate(req.user.id,{
+      profileUrl:url
+    })
+    res.status(200).json(req.user)
+  })
+
 
   //Generate JWT token
   const generateToken=(id)=>{
@@ -85,5 +96,6 @@ const getMe =asyncHandler(async(req,res)=>{
 module.exports={
     registerUser,
     loginUser,
-    getMe
+    getMe,
+    profileUpload
 }

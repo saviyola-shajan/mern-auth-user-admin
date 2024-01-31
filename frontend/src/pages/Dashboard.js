@@ -28,6 +28,11 @@ function Dashboard() {
     // };
   }, [user, navigate, isError, message, dispatch]);
 
+  const profile=(e)=>{
+  e.preventDefault()
+  navigate('/profile')
+  }
+
   if (isLoading) {
     return <Spinner />;
   }
@@ -36,7 +41,9 @@ function Dashboard() {
       <section className="heading">
         <h1>Welcome {user && user.name}</h1>
         <p>Goals Dashboard</p>
+        <button  className='btn' onClick={profile}>Profile</button>
       </section>
+
 
       <GoalForm />
 

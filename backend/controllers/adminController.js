@@ -13,8 +13,13 @@ const loginAdmin = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("please add all fields");
   }
-
+  
   const admin = await Admin.findOne({ email });
+
+  if (!admin) {
+    res.status(400);
+    throw new Error("No admin found with this email!");
+  }
 
   if (Admin && password === admin.password) {
     res.json({
@@ -78,7 +83,7 @@ const userUnBlock=asyncHandler(async(req,res)=>{
 //get/api/admin/search
 //private
 const searchUser=asyncHandler(async(req,res)=>{
-    const query=req.body.query
+    const query=req.query
     const regex=new RegExp(`^${query}`, 'i');
 
     const users = await User.find({name:{$regex:regex}})
