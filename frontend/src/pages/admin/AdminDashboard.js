@@ -21,7 +21,7 @@ function AdminDashboard() {
     }else{
       dispatch(getAllUsers)
     }
-    return()=>{
+    return ()=>{
       dispatch(reset())
     }
   },[dispatch,admin,navigate,searchQuery])

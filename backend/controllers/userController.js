@@ -85,10 +85,10 @@ const getMe =asyncHandler(async(req,res)=>{
   const profileUpload=asyncHandler(async(req,res)=>{
     const url=req.body.url
     // const user=req.body.liveUser
-    await User.findByIdAndUpdate(req.user.id,{
+    const user =await User.findByIdAndUpdate(req.user.id,{
       profileUrl:url
-    })
-    res.status(200).json(req.user)
+    },{new:true})
+    res.status(200).json(user.profileUrl)
   })
 
 

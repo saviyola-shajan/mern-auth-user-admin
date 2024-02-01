@@ -120,7 +120,7 @@ export const authSlice = createSlice({
       state.isSuccess = true;                
       state.user = {
           ...state.user,
-          profileUrl: action.payload.profileUrl,
+          profileUrl: action.payload
       };
   })
   

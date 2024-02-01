@@ -6,7 +6,7 @@ function Profile() {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  useEffect(() => {}, [dispatch, user]);
+  useEffect(() => {}, [dispatch, user,user.profileUrl]);
 
   const [image, setImage] = useState("");
   const [url, seturl] = useState("");
@@ -41,9 +41,9 @@ function Profile() {
       <h4>{user.email}</h4>
       <form>
         <h3>Upload profile picture</h3>
-        <div className="form-group">
-          <img src={url ? url : ""} alt="" width="400px" height="250px"/> <br />
-        </div>
+        {/* <div className="form-group">
+          <img src={url ? url : ""} alt="profile" width="400px" height="250px"/> <br />
+        </div> */}
         <div className="form-group">
           <input
             type="file"

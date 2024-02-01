@@ -83,7 +83,7 @@ const userUnBlock=asyncHandler(async(req,res)=>{
 //get/api/admin/search
 //private
 const searchUser=asyncHandler(async(req,res)=>{
-    const query=req.query
+    const {query}=req.body
     const regex=new RegExp(`^${query}`, 'i');
 
     const users = await User.find({name:{$regex:regex}})
