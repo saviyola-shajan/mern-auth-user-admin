@@ -84,6 +84,7 @@ const getMe =asyncHandler(async(req,res)=>{
   //private
   const profileUpload=asyncHandler(async(req,res)=>{
     const url=req.body.url
+    // const user=req.body.liveUser
     await User.findByIdAndUpdate(req.user.id,{
       profileUrl:url
     })

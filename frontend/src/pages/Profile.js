@@ -32,18 +32,18 @@ function Profile() {
   return (
     <div>
       <h1>Profile Page</h1>
-      <h3>Upload profile picture</h3>
       <img
         src={user?.profileUrl ? user.profileUrl : ""}
         alt="profile"
-        height="250px" width="400px"
-      />
+        height="100px"
+        />
       <h4>{user.name}</h4>
       <h4>{user.email}</h4>
       <form>
-        {/* <div className="form-group">
-          <img src={url ? url : ""} alt="" height="250px" width="400px"/> <br />
-        </div> */}
+        <h3>Upload profile picture</h3>
+        <div className="form-group">
+          <img src={url ? url : ""} alt="" width="400px" height="250px"/> <br />
+        </div>
         <div className="form-group">
           <input
             type="file"

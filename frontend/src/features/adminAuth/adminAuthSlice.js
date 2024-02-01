@@ -201,7 +201,7 @@ export const adminAuthSlice = createSlice({
       .addCase(searchUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.users = action.payload;
+        state.users = action.payload.users
       })
       .addCase(searchUser.rejected, (state, action) => {
         state.isLoading = false;

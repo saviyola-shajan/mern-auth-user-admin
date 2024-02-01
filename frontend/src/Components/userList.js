@@ -49,7 +49,6 @@ const UserList = () => {
 
   const logout = () => {
     dispatch(adminLogout())
-    console.log("dhghsj")
     navigate('login');
   };
   return (
